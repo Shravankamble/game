@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # this project/(game) is created in python using pygame module
 
 # DAY 1
@@ -20,8 +19,3 @@
 - [ ] to be continued
 # DAY 7
 - [ ] to be continued
-=======
-# Need to add some details about project to README.md
-- [ ] to be continued... 
-- [ ] to be continued...
->>>>>>> ed135b9395724b02a17bcb64a730d96b2c500136
