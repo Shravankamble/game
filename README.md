@@ -2,7 +2,7 @@
 
 # DAY 1
 - [x] ***added almost all the images that needs to be in the game***
-- [x] ***each images has its own movement, added the movement needed to that particular object/image***
+- [x] ***each image has its own movement, added the movement needed to that particular object/image***
 - [x] ***DAY 1 completed***
 
 # DAY 2
