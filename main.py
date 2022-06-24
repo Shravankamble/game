@@ -18,16 +18,22 @@ cloud = pygame.image.load('cloudy.png').convert_alpha()
 extra_clouds = pygame.image.load('clouds.png').convert_alpha()
 sun = pygame.image.load('contrast.png').convert_alpha()
 ground = pygame.image.load('ground.png')
+text = pygame.font.Font(None, 50)
 extra_ground = pygame.image.load('extra_ground.png')
 car = pygame.image.load('car.png').convert_alpha()
 tree = pygame.image.load('tree.png').convert_alpha()
 house = pygame.image.load('house.png').convert_alpha()
-family_of_that_house = pygame.image.load('garden.png')
+family_of_that_house = pygame.image.load('garden.png').convert_alpha()
+player = pygame.image.load('ninja.png').convert_alpha()
+player_rect = player.get_rect(midbottom = (35, 500))
+car_rect = car.get_rect(bottomright = (1000, 545))
+player_x = 35
+player_y = 445
 family_of_that_house_x = 555
 house_x = 565
 tree_x = 5
 ground_y = 500
-car_x = 1300
+## car_x = 1300
 sun_x = -10
 extra_clouds_x = 900
 cloud_x = 1100
@@ -66,23 +72,44 @@ while True:
     screen.blit(tree, (tree_x, 380))
     screen.blit(house, (house_x, 380))
     screen.blit(family_of_that_house, (family_of_that_house_x, 471))
-    screen.blit(car, (car_x, 420))
+    screen.blit(car, car_rect)
+    screen.blit(player, player_rect)
+    # 67
+    # print(player_rect.right)
+    # print(car_rect.right)
+    # player_rect.x += 3
+    # if player_rect.left > 1300:
+    #     player_rect.right = -100
+    # mouse_pos = pygame.mouse.get_pos()
+    # if player_rect.collidepoint(mouse_pos):
+    #     print("collision occured!")
+
     house_x += 4
     if house_x > 2000:
         house_x = values.house_x_respawn_pos
+
     family_of_that_house_x += 4
     if family_of_that_house_x > 2000:
         family_of_that_house_x = values.family_of_that_house_x_respawn_pos
+
     tree_x += 4
     if tree_x > 5000:
         tree_x = values.tree_x_respawn_pos
-    car_x -= 4
-    if car_x < -100:
-        car_x = values.car_x_respawn_pos
+
+    # car_x -= 4
+    # if car_x < -100:
+    #     car_x = values.car_x_respawn_pos
+
+    car_rect.x -= 4
+    if car_rect.right < -200:
+        car_rect.left = 1300
+
     extra_clouds_x -= 0.1
     if extra_clouds_x < -200:
         extra_clouds_x = values.extra_cloud_respawn_pos
+
     # pygame.display.update() is used to keep updating the screen or display
+    text_blit = text.render('score', False, 'black')
     pygame.display.update()
     # ths .tick() function is used for the fps
     Tick.tick(88)
