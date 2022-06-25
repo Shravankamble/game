@@ -1,3 +1,4 @@
+from tkinter import CENTER
 import pygame
 import values
 from sys import exit
@@ -7,36 +8,59 @@ pygame.init()
 width = 1200
 height = 600
 screen = pygame.display.set_mode((width, height))
+font_name = pygame.font.Font(None, 35)
+score_render = font_name.render('SCORE', False, '#F7C0BA')
+score_rect = score_render.get_rect(center = (545, 20))
 # the title of the game
 pygame.display.set_caption('SpeedRunner')
 # we are never gonna move the main image it gonna be where it was from the starting
 pygame_logo = pygame.image.load('run.png')
 pygame.display.set_icon(pygame_logo)
+# background/sky
 sky_image = pygame.image.load('sky_image.png')
+# airplane
 airplane = pygame.image.load('airplane.png').convert_alpha()
+# cloud
 cloud = pygame.image.load('cloudy.png').convert_alpha()
+# extra cloud
 extra_clouds = pygame.image.load('clouds.png').convert_alpha()
+# sun
 sun = pygame.image.load('contrast.png').convert_alpha()
+# ground
 ground = pygame.image.load('ground.png')
-text = pygame.font.Font(None, 50)
+# extra ground
 extra_ground = pygame.image.load('extra_ground.png')
-car = pygame.image.load('car.png').convert_alpha()
+# tree
 tree = pygame.image.load('tree.png').convert_alpha()
+#house
 house = pygame.image.load('house.png').convert_alpha()
+#family of that house
 family_of_that_house = pygame.image.load('garden.png').convert_alpha()
+# player
 player = pygame.image.load('ninja.png').convert_alpha()
 player_rect = player.get_rect(midbottom = (35, 500))
+# car
+car = pygame.image.load('car.png').convert_alpha()
 car_rect = car.get_rect(bottomright = (1000, 545))
+# player_x and player_y
 player_x = 35
 player_y = 445
+# family_of_that_house_x
 family_of_that_house_x = 555
+# house_x
 house_x = 565
+# tree_x
 tree_x = 5
+# ground_x
 ground_y = 500
 ## car_x = 1300
+# sun_x
 sun_x = -10
+# extra_clouds_x
 extra_clouds_x = 900
+# cloud_x
 cloud_x = 1100
+# airplane_x
 airplane_x = 0
 Tick = pygame.time.Clock()
 
@@ -67,6 +91,7 @@ while True:
         cloud_x = values.cloud_x_respawn_pos
     screen.blit(extra_clouds, (extra_clouds_x, 129))
     screen.blit(sun, (sun_x, 0))
+    screen.blit(score_render, score_rect)
     screen.blit(ground, (0, ground_y))
     screen.blit(extra_ground, (800, ground_y))
     screen.blit(tree, (tree_x, 380))
@@ -84,14 +109,17 @@ while True:
     # if player_rect.collidepoint(mouse_pos):
     #     print("collision occured!")
 
+    # house movement
     house_x += 4
     if house_x > 2000:
         house_x = values.house_x_respawn_pos
 
+    # family_of_that_house movement
     family_of_that_house_x += 4
     if family_of_that_house_x > 2000:
         family_of_that_house_x = values.family_of_that_house_x_respawn_pos
 
+    # tree movement
     tree_x += 4
     if tree_x > 5000:
         tree_x = values.tree_x_respawn_pos
@@ -100,16 +128,24 @@ while True:
     # if car_x < -100:
     #     car_x = values.car_x_respawn_pos
 
+    # car mechanism
     car_rect.x -= 4
     if car_rect.right < -200:
         car_rect.left = 1300
 
+    player_rect.x += 2
+    if player_rect.right > 1200:
+        player_rect.left = 35
+    # cloud movement
     extra_clouds_x -= 0.1
     if extra_clouds_x < -200:
         extra_clouds_x = values.extra_cloud_respawn_pos
 
     # pygame.display.update() is used to keep updating the screen or display
-    text_blit = text.render('score', False, 'black')
+    # if player_rect.colliderect(car_rect):
+    #     car_rect.right = 1300
+    #     player_rect.left = 35
+
     pygame.display.update()
-    # ths .tick() function is used for the fps
+    # ths .tick() function is used for the games fps(frames per second)
     Tick.tick(88)
