@@ -1,5 +1,5 @@
-from tkinter import CENTER
 import pygame
+import collision
 import values
 from sys import exit
 
@@ -9,7 +9,7 @@ width = 1200
 height = 600
 screen = pygame.display.set_mode((width, height))
 font_name = pygame.font.Font(None, 35)
-score_render = font_name.render('SCORE', False, '#F7C0BA')
+score_render = font_name.render('SCORE', False, 'black')
 score_rect = score_render.get_rect(center = (545, 20))
 # the title of the game
 pygame.display.set_caption('SpeedRunner')
@@ -42,6 +42,9 @@ player_rect = player.get_rect(midbottom = (35, 500))
 # car
 car = pygame.image.load('car.png').convert_alpha()
 car_rect = car.get_rect(bottomright = (1000, 545))
+# black hole
+black_hole = pygame.image.load('black-hole.png').convert_alpha()
+black_hole_rect = black_hole.get_rect(midbottom = (700, 460))
 # player_x and player_y
 player_x = 35
 player_y = 445
@@ -97,6 +100,7 @@ while True:
     screen.blit(tree, (tree_x, 380))
     screen.blit(house, (house_x, 380))
     screen.blit(family_of_that_house, (family_of_that_house_x, 471))
+    screen.blit(black_hole, black_hole_rect)
     screen.blit(car, car_rect)
     screen.blit(player, player_rect)
     # 67
@@ -108,7 +112,6 @@ while True:
     # mouse_pos = pygame.mouse.get_pos()
     # if player_rect.collidepoint(mouse_pos):
     #     print("collision occured!")
-
     # house movement
     house_x += 4
     if house_x > 2000:
@@ -127,6 +130,10 @@ while True:
     # car_x -= 4
     # if car_x < -100:
     #     car_x = values.car_x_respawn_pos
+    # black_hole
+    black_hole_rect.x += 1
+    if black_hole_rect.right > 3000:
+        black_hole_rect.left = -100
 
     # car mechanism
     car_rect.x -= 4
@@ -140,12 +147,9 @@ while True:
     extra_clouds_x -= 0.1
     if extra_clouds_x < -200:
         extra_clouds_x = values.extra_cloud_respawn_pos
-
     # pygame.display.update() is used to keep updating the screen or display
-    # if player_rect.colliderect(car_rect):
-    #     car_rect.right = 1300
-    #     player_rect.left = 35
-
+    if black_hole_rect.colliderect(car_rect):
+        car_rect.right = 1300
     pygame.display.update()
     # ths .tick() function is used for the games fps(frames per second)
     Tick.tick(88)
