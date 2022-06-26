@@ -133,7 +133,7 @@ while True:
     # black_hole
     black_hole_rect.x += 1
     if black_hole_rect.right > 3000:
-        black_hole_rect.left = -100
+        black_hole_rect.left = 10000
 
     # car mechanism
     car_rect.x -= 4
