@@ -1,4 +1,4 @@
-# this project/(game) is created in python using pygame module
+# this project(game) is created in python using pygame module
 
 # DAY 1
 - [x] ***added almost all the images that needs to be in the game***
