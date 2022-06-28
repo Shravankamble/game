@@ -1,5 +1,5 @@
 import pygame
-import collision
+# import collision
 import values
 from sys import exit
 
@@ -8,9 +8,15 @@ pygame.init()
 width = 1200
 height = 600
 screen = pygame.display.set_mode((width, height))
+# score
+# game_loop
+game_loop = True
 font_name = pygame.font.Font(None, 35)
 score_render = font_name.render('SCORE', False, 'black')
 score_rect = score_render.get_rect(center = (545, 20))
+# game_over
+# game_over = font_name.render('GAME OVER', False, 'black')
+# game_over_rect = game_over.get_rect(center = (600, 300))
 # the title of the game
 pygame.display.set_caption('SpeedRunner')
 # we are never gonna move the main image it gonna be where it was from the starting
@@ -42,6 +48,9 @@ player_rect = player.get_rect(midbottom = (35, 502))
 # car
 car = pygame.image.load('cactus.png').convert_alpha()
 car_rect = car.get_rect(bottomright = (1000, 502))
+# game_over
+# game_over = pygame.image.load('game_over.png').convert_alpha()
+# game_over_rect = game_over.get_rect(center = (1500, 300))
 # 545
 # black hole
 black_hole = pygame.image.load('black-hole.png').convert_alpha()
@@ -89,110 +98,93 @@ while True:
                 flat_surface = -20
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE and player_rect.bottom >= 502:
                 flat_surface = -20
             
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                player_rect.right += 20
-
-
         # if event.type == pygame.KEYDOWN:
-        #     player_rect.y -= 150
-        # if event.type == pygame.KEYUP:
-        #     player_rect.y += 150
+        #     if event.key == pygame.K_RIGHT:
+        #         player_rect.right += 20
+        #         if player_rect.right > 1300:
+        #             player_rect.left = 0
 
     # .blit() basically means adding additional surface on each other.
-    #screen.blit(testing, (10, 500))
+    # screen.blit(testing, (10, 500))
     # bg_image/sky
-    screen.blit(sky_image, (0, 0))
-    airplane_x += 1
-    if airplane_x > 2000:
-        airplane_x = values.airplane_respawn_pos
-    # airplane
-    screen.blit(airplane, (airplane_x, 120))
-    # cloud
-    screen.blit(cloud, (cloud_x, 120))
-    cloud_x -= 0.1
-    if cloud_x < -185:
-        cloud_x = values.cloud_x_respawn_pos
-    # extra_cloud
-    screen.blit(extra_clouds, (extra_clouds_x, 129))
-    # sun
-    screen.blit(sun, (sun_x, 0))
-    # score_render
-    screen.blit(score_render, score_rect)
-    # ground
-    screen.blit(ground, (0, ground_y))
-    # extra_ground
-    screen.blit(extra_ground, (800, ground_y))
-    # tree
-    screen.blit(tree, (tree_x, 380))
-    # house
-    screen.blit(house, (house_x, 380))
-    # family_of_that_house
-    screen.blit(family_of_that_house, (family_of_that_house_x, 471))
-    # screen.blit(black_hole, black_hole_rect)
-    # car object
-    screen.blit(car, car_rect)
-    # player 
-    flat_surface += 1
-    player_rect.y += flat_surface
-    if player_rect.bottom > 502:
-        player_rect.bottom = 502
-    screen.blit(player, player_rect)
-    # keys = pygame.key.get_pressed()
-    # 67
-    # print(player_rect.right)
-    # print(car_rect.right)
-    # player_rect.x += 3
-    # if player_rect.left > 1300:
-    #     player_rect.right = -100
-    # mouse_pos = pygame.mouse.get_pos()
-    # if player_rect.collidepoint(mouse_pos):
-    #     print("collision occured!")
-    # house movement
-    house_x += 4
-    if house_x > 2000:
-        house_x = values.house_x_respawn_pos
+    if game_loop:
+        screen.blit(sky_image, (0, 0))
+        airplane_x += 1
+        if airplane_x > 2000:
+            airplane_x = values.airplane_respawn_pos
+        # airplane
+        screen.blit(airplane, (airplane_x, 120))
+        # cloud
+        screen.blit(cloud, (cloud_x, 120))
+        cloud_x -= 0.1
+        if cloud_x < -185:
+            cloud_x = values.cloud_x_respawn_pos
+        # extra_cloud
+        screen.blit(extra_clouds, (extra_clouds_x, 129))
+        # sun
+        screen.blit(sun, (sun_x, 0))
+        # score_render
+        screen.blit(score_render, score_rect)
+        # ground
+        screen.blit(ground, (0, ground_y))
+        # extra_ground
+        screen.blit(extra_ground, (800, ground_y))
+        # tree
+        screen.blit(tree, (tree_x, 380))
+        # house
+        screen.blit(house, (house_x, 380))
+        # family_of_that_house
+        screen.blit(family_of_that_house, (family_of_that_house_x, 471))
+        # screen.blit(black_hole, black_hole_rect)
+        # car object
+        screen.blit(car, car_rect)
+        # player 
+        flat_surface += 1
+        player_rect.y += flat_surface
+        if player_rect.bottom > 502:
+            player_rect.bottom = 502
+        screen.blit(player, player_rect)
+        # keys = pygame.key.get_pressed()
+        # 67
+        # print(player_rect.right)
+        # house movement
+        house_x += 4
+        if house_x > 1300:
+            house_x = values.house_x_respawn_pos
 
-    # family_of_that_house movement
-    family_of_that_house_x += 4
-    if family_of_that_house_x > 2000:
-        family_of_that_house_x = values.family_of_that_house_x_respawn_pos
+        # family_of_that_house movement
+        family_of_that_house_x += 4
+        if family_of_that_house_x > 1300:
+            family_of_that_house_x = values.family_of_that_house_x_respawn_pos
 
-    # tree movement
-    tree_x += 4
-    if tree_x > 5000:
-        tree_x = values.tree_x_respawn_pos
+        # tree movement
+        tree_x += 4
+        if tree_x > 1300:
+            tree_x = values.tree_x_respawn_pos
 
-    # player_rect.x += 4
-    # if player_rect.right > 1200:
-    #     player_rect.left = 0
-    # car_x -= 4
-    # if car_x < -100:
-    #     car_x = values.car_x_respawn_pos
+        # black_hole
+        # black_hole_rect.x += 1
+        # if black_hole_rect.right > 3000:
+        #     black_hole_rect.left = 10000
 
-    # black_hole
-    # black_hole_rect.x += 1
-    # if black_hole_rect.right > 3000:
-    #     black_hole_rect.left = 10000
+        # car mechanism
+        car_rect.x -= 6
+        if car_rect.right < -200:
+            car_rect.left = 1300
 
-    # car mechanism
-    car_rect.x -= 6
-    if car_rect.right < -200:
-        car_rect.left = 1300
+        # cloud movement
+        extra_clouds_x -= 0.1
+        if extra_clouds_x < -200:
+            extra_clouds_x = values.extra_cloud_respawn_pos
 
-    # cloud movement
-    extra_clouds_x -= 0.1
-    if extra_clouds_x < -200:
-        extra_clouds_x = values.extra_cloud_respawn_pos
+        if player_rect.colliderect(car_rect):
+            game_loop = False
+            screen.fill('black')
+            # screen.blit(game_over, game_over_rect)
     # pygame.display.update() is used to keep updating the screen or display
-    if player_rect.colliderect(car_rect):
-        car_rect.right = 1300
-        player_rect.left = 35
-    # if black_hole_rect.colliderect(car_rect):
-    #     car_rect.right = 1300
     pygame.display.update()
     # ths .tick() function is used for the games fps(frames per second)
-    Tick.tick(88)
+    Tick.tick(80)
