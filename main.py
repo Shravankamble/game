@@ -10,6 +10,7 @@ height = 600
 screen = pygame.display.set_mode((width, height))
 # score
 # game_loop
+time = pygame.time.Clock()
 game_loop = True
 font_name = pygame.font.Font(None, 35)
 score_render = font_name.render('SCORE', False, 'black')
@@ -42,6 +43,9 @@ tree = pygame.image.load('tree.png').convert_alpha()
 house = pygame.image.load('house.png').convert_alpha()
 #family of that house
 family_of_that_house = pygame.image.load('garden.png').convert_alpha()
+# restart button
+retry = pygame.image.load('restart.png').convert_alpha()
+retry_rect = retry.get_rect(center = (600, 360))
 # player
 player = pygame.image.load('ninja.png').convert_alpha()
 player_rect = player.get_rect(midbottom = (35, 502))
@@ -93,20 +97,26 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if player_rect.collidepoint(event.pos):
-                flat_surface = -20
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE and player_rect.bottom >= 502:
-                flat_surface = -20
+        if game_loop:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if player_rect.collidepoint(event.pos):
+                    flat_surface = -20
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and player_rect.bottom >= 502:
+                    flat_surface = -20
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    player_rect.left -= 20
             
-        # if event.type == pygame.KEYDOWN:
-        #     if event.key == pygame.K_RIGHT:
-        #         player_rect.right += 20
-        #         if player_rect.right > 1300:
-        #             player_rect.left = 0
-
+        else:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_s:
+                    game_loop = True
+                    car_rect.right = 1300
+                    player_rect.left = 35
     # .blit() basically means adding additional surface on each other.
     # screen.blit(testing, (10, 500))
     # bg_image/sky
@@ -170,6 +180,11 @@ while True:
         # if black_hole_rect.right > 3000:
         #     black_hole_rect.left = 10000
 
+        # player
+        player_rect.x += 1
+        if player_rect.right > 1200:
+            player_rect.left = 0
+
         # car mechanism
         car_rect.x -= 6
         if car_rect.right < -200:
@@ -183,7 +198,9 @@ while True:
         if player_rect.colliderect(car_rect):
             game_loop = False
             screen.fill('black')
-            # screen.blit(game_over, game_over_rect)
+            screen.blit(retry, retry_rect)
+
+    # screen.blit(game_over, game_over_rect)
     # pygame.display.update() is used to keep updating the screen or display
     pygame.display.update()
     # ths .tick() function is used for the games fps(frames per second)
