@@ -18,4 +18,4 @@
 # DAY 6
 - [x] to be continued
 # DAY 7
-- [x] to be continued
+- [ ] to be continued
