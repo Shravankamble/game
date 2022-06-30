@@ -15,6 +15,8 @@ game_loop = True
 font_name = pygame.font.Font(None, 35)
 score_render = font_name.render('SCORE', False, 'black')
 score_rect = score_render.get_rect(center = (545, 20))
+# score points
+
 # the title of the game
 pygame.display.set_caption('SpeedRunner')
 # we are never gonna move the main image it gonna be where it was from the starting
@@ -23,6 +25,9 @@ pygame.display.set_icon(pygame_logo)
 # background/sky
 sky_image = pygame.image.load('sky_image.png')
 # airplane
+# exit button
+exit_button = pygame.image.load('exit-button.png')
+exit_button_rect = exit_button.get_rect(center = (1190, 10))
 airplane = pygame.image.load('airplane.png').convert_alpha()
 # cloud
 cloud = pygame.image.load('cloudy.png').convert_alpha()
@@ -79,8 +84,8 @@ Tick = pygame.time.Clock()
 
 # trying out co-ordinates to learn more about them 
 # aquiring space is (100, 200) for that you use pygame.Surface
-# this is just to have an idea that how work with co-ordinates
-# no need of this just practicing.
+# this is just to have an idea that how to work with co-ordinates
+# no need of this in the game just practicing.
 # testing = pygame.Surface((100, 200))
 # the fill is just means adding color to it
 # testing.fill('white')
@@ -91,6 +96,8 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+            
+        MousePosition = pygame.mouse.get_pos()
 
         if game_loop:
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -103,16 +110,27 @@ while True:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    player_rect.left -= 20
+                    player_rect.left -= 30
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    player_rect.x += 30
+            
+            if exit_button_rect.collidepoint(MousePosition):
+                if pygame.mouse.get_pressed()[0]:
+                    pygame.quit()
+                    exit()
             
         else:
-            # if event.type == pygame.KEYDOWN:
-            #     if event.key == pygame.K_s:
-            #         game_loop = True
-            #         car_rect.right = 1300
-            #         player_rect.left = 35
-            if event.type == pygame.MOUSEMOTION:
-                if retry_rect.collidepoint(event.pos):
+            if retry_rect.collidepoint(MousePosition):
+            # pygame.mouse.get_pos() method is used to get the position of the mouse
+            # and pygame.mouse.get_pressed() is use for which button is getting preesed on the mouse
+                # [0] -> button on the left hand side of the mouse 
+                # [1] -> button in the mid of the mouse
+                # [2] -> button on the right hand side of the mouse
+                # pygame.mouse.get_pressed()[1] or pygame.mouse.get_pressed()[2] you can use whichever button you like the most on the mouse
+                #                             ↓                       
+                if pygame.mouse.get_pressed()[0]:
                     game_loop = True
                     car_rect.right = 1300
                     player_rect.left = 35
@@ -134,11 +152,15 @@ while True:
             cloud_x = values.cloud_x_respawn_pos
         # extra_cloud
         screen.blit(extra_clouds, (extra_clouds_x, 129))
+        # exit button 
+        screen.blit(exit_button, exit_button_rect)
         # sun
         screen.blit(sun, (sun_x, 0))
         # score_render
         screen.blit(score_render, score_rect)
         # ground
+        # black hole
+        screen.blit(black_hole, black_hole_rect)
         screen.blit(ground, (0, ground_y))
         # extra_ground
         screen.blit(extra_ground, (800, ground_y))
@@ -156,7 +178,6 @@ while True:
         if player_rect.bottom > 502:
             player_rect.bottom = 502
         screen.blit(player, player_rect)
-        # keys = pygame.key.get_pressed()
         # 67
         # print(player_rect.right)
         # house movement
@@ -175,9 +196,11 @@ while True:
             tree_x = values.tree_x_respawn_pos
 
         # player
-        player_rect.x += 1
-        if player_rect.right > 1200:
-            player_rect.left = 0
+        if player_rect.right >= 1200:
+            player_rect.right = 35
+        else:
+            if player_rect.left <= 0:
+                player_rect.left = 35
 
         # car mechanism
         car_rect.x -= 6
