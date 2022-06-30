@@ -8,16 +8,13 @@ pygame.init()
 width = 1200
 height = 600
 screen = pygame.display.set_mode((width, height))
-# score
 # game_loop
 time = pygame.time.Clock()
 game_loop = True
+# score
 font_name = pygame.font.Font(None, 35)
 score_render = font_name.render('SCORE', False, 'black')
 score_rect = score_render.get_rect(center = (545, 20))
-# game_over
-# game_over = font_name.render('GAME OVER', False, 'black')
-# game_over_rect = game_over.get_rect(center = (600, 300))
 # the title of the game
 pygame.display.set_caption('SpeedRunner')
 # we are never gonna move the main image it gonna be where it was from the starting
@@ -52,9 +49,6 @@ player_rect = player.get_rect(midbottom = (35, 502))
 # car
 car = pygame.image.load('cactus.png').convert_alpha()
 car_rect = car.get_rect(bottomright = (1000, 502))
-# game_over
-# game_over = pygame.image.load('game_over.png').convert_alpha()
-# game_over_rect = game_over.get_rect(center = (1500, 300))
 # 545
 # black hole
 black_hole = pygame.image.load('black-hole.png').convert_alpha()
@@ -112,12 +106,18 @@ while True:
                     player_rect.left -= 20
             
         else:
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_s:
+            # if event.type == pygame.KEYDOWN:
+            #     if event.key == pygame.K_s:
+            #         game_loop = True
+            #         car_rect.right = 1300
+            #         player_rect.left = 35
+            if event.type == pygame.MOUSEMOTION:
+                if retry_rect.collidepoint(event.pos):
                     game_loop = True
                     car_rect.right = 1300
                     player_rect.left = 35
-    # .blit() basically means adding additional surface on each other.
+
+    # .blit() basically means adding additional surface/image on each other.
     # screen.blit(testing, (10, 500))
     # bg_image/sky
     if game_loop:
@@ -148,7 +148,6 @@ while True:
         screen.blit(house, (house_x, 380))
         # family_of_that_house
         screen.blit(family_of_that_house, (family_of_that_house_x, 471))
-        # screen.blit(black_hole, black_hole_rect)
         # car object
         screen.blit(car, car_rect)
         # player 
@@ -175,11 +174,6 @@ while True:
         if tree_x > 1300:
             tree_x = values.tree_x_respawn_pos
 
-        # black_hole
-        # black_hole_rect.x += 1
-        # if black_hole_rect.right > 3000:
-        #     black_hole_rect.left = 10000
-
         # player
         player_rect.x += 1
         if player_rect.right > 1200:
@@ -197,7 +191,7 @@ while True:
 
         if player_rect.colliderect(car_rect):
             game_loop = False
-            screen.fill('black')
+            screen.fill('#000033')
             screen.blit(retry, retry_rect)
 
     # screen.blit(game_over, game_over_rect)
