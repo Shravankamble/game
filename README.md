@@ -6,16 +6,16 @@
 - [x] ***DAY 1 completed***
 
 # DAY 2
-- [ ] to be continued
+- [x] to be continued
 # DAY 3
-- [ ] to be continued
+- [x] to be continued
 # DAY 4
-- [ ] to be continued
+- [x] to be continued
 # DAY 4
-- [ ] to be continued
+- [x] to be continued
 # DAY 5
-- [ ] to be continued
+- [x] to be continued
 # DAY 6
-- [ ] to be continued
+- [x] to be continued
 # DAY 7
-- [ ] to be continued
+- [x] to be continued
