@@ -9,6 +9,8 @@ width = 1200
 height = 600
 screen = pygame.display.set_mode((width, height))
 # game_loop
+# spin
+spin = 0
 time = pygame.time.Clock()
 game_loop = True
 # score
@@ -130,7 +132,7 @@ while True:
                 # [2] -> button on the right hand side of the mouse
                 # pygame.mouse.get_pressed()[1] or pygame.mouse.get_pressed()[2] you can use whichever button you like the most on the mouse
                 #                             ↓                       
-                if pygame.mouse.get_pressed()[0]:
+                if pygame.mouse.get_pressed()[0]:    
                     game_loop = True
                     car_rect.right = 1300
                     player_rect.left = 35
@@ -158,9 +160,12 @@ while True:
         screen.blit(sun, (sun_x, 0))
         # score_render
         screen.blit(score_render, score_rect)
-        # ground
         # black hole
         screen.blit(black_hole, black_hole_rect)
+        black_hole_rect.x += 1
+        if black_hole_rect.right >= 1300:
+            black_hole_rect.left = -100
+        # ground
         screen.blit(ground, (0, ground_y))
         # extra_ground
         screen.blit(extra_ground, (800, ground_y))
