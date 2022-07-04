@@ -1,6 +1,6 @@
 import pygame
-# import collision
 import values
+import score
 from sys import exit
 
 pygame.init()
@@ -9,16 +9,17 @@ width = 1200
 height = 600
 screen = pygame.display.set_mode((width, height))
 # game_loop
-# spin
-spin = 0
 time = pygame.time.Clock()
 game_loop = True
 # score
 font_name = pygame.font.Font(None, 35)
-score_render = font_name.render('SCORE', False, 'black')
+score_render = font_name.render('SCORE : ', False, 'black')
 score_rect = score_render.get_rect(center = (545, 20))
-# score points
-
+# high_score 
+high_score = font_name.render('YOUR SCORE', False, '#050552')
+high_score_rect = high_score.get_rect(center = (600, 470))
+# store_high_score = font_name.render(f'{score.high_score}', False, 'black')
+# store_high_score_rect = store_high_score.get_rect(center = (700, 430))
 # the title of the game
 pygame.display.set_caption('SpeedRunner')
 # we are never gonna move the main image it gonna be where it was from the starting
@@ -26,10 +27,13 @@ pygame_logo = pygame.image.load('run.png')
 pygame.display.set_icon(pygame_logo)
 # background/sky
 sky_image = pygame.image.load('sky_image.png')
-# airplane
+# finish line
+finish_line = pygame.image.load('panel.png')
+finish_line_rect = finish_line.get_rect(center = (1150, 480))
 # exit button
 exit_button = pygame.image.load('exit-button.png')
 exit_button_rect = exit_button.get_rect(center = (1190, 10))
+# airplane
 airplane = pygame.image.load('airplane.png').convert_alpha()
 # cloud
 cloud = pygame.image.load('cloudy.png').convert_alpha()
@@ -49,7 +53,10 @@ house = pygame.image.load('house.png').convert_alpha()
 family_of_that_house = pygame.image.load('garden.png').convert_alpha()
 # restart button
 retry = pygame.image.load('restart.png').convert_alpha()
-retry_rect = retry.get_rect(center = (600, 360))
+retry_rect = retry.get_rect(center = (600, 400))
+# game over
+game_over = pygame.image.load('game-over.png').convert_alpha()
+game_over_rect = game_over.get_rect(center = (600, 200))
 # player
 player = pygame.image.load('ninja.png').convert_alpha()
 player_rect = player.get_rect(midbottom = (35, 502))
@@ -136,6 +143,7 @@ while True:
                     game_loop = True
                     car_rect.right = 1300
                     player_rect.left = 35
+                    score.reset = (int)(pygame.time.get_ticks() / 150)
 
     # .blit() basically means adding additional surface/image on each other.
     # screen.blit(testing, (10, 500))
@@ -160,11 +168,16 @@ while True:
         screen.blit(sun, (sun_x, 0))
         # score_render
         screen.blit(score_render, score_rect)
+        score.score(screen)
+        store_high_score = font_name.render(f'{score.high_score}', False, 'black')
+        store_high_score_rect = store_high_score.get_rect(center = (592, 510))
         # black hole
         screen.blit(black_hole, black_hole_rect)
         black_hole_rect.x += 1
         if black_hole_rect.right >= 1300:
             black_hole_rect.left = -100
+        # finish line
+        screen.blit(finish_line, finish_line_rect)
         # ground
         screen.blit(ground, (0, ground_y))
         # extra_ground
@@ -208,7 +221,7 @@ while True:
                 player_rect.left = 35
 
         # car mechanism
-        car_rect.x -= 6
+        car_rect.x -= 10
         if car_rect.right < -200:
             car_rect.left = 1300
 
@@ -220,7 +233,14 @@ while True:
         if player_rect.colliderect(car_rect):
             game_loop = False
             screen.fill('#000033')
+            screen.blit(game_over, game_over_rect)
             screen.blit(retry, retry_rect)
+            screen.blit(high_score, high_score_rect)
+            screen.blit(store_high_score, store_high_score_rect)
+
+        if player_rect.colliderect(finish_line_rect):
+            screen.fill('black')
+            # screen.blit(win, win_rect)
 
     # screen.blit(game_over, game_over_rect)
     # pygame.display.update() is used to keep updating the screen or display
