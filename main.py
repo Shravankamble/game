@@ -5,6 +5,9 @@ from sys import exit
 
 pygame.init()
 # size of the window or display
+# sound effect
+ninja_jump = pygame.mixer.Sound('ninja-jump.mp3')
+# screen width and height
 width = 1200
 height = 600
 screen = pygame.display.set_mode((width, height))
@@ -13,6 +16,7 @@ time = pygame.time.Clock()
 game_loop = True
 # score
 font_name = pygame.font.Font(None, 35)
+font = pygame.font.Font(None, 100)
 score_render = font_name.render('SCORE : ', False, 'black')
 score_rect = score_render.get_rect(center = (545, 20))
 # high_score 
@@ -63,6 +67,9 @@ player_rect = player.get_rect(midbottom = (35, 502))
 # car
 car = pygame.image.load('cactus.png').convert_alpha()
 car_rect = car.get_rect(bottomright = (1000, 502))
+# drone
+drone = pygame.image.load('drone.png').convert_alpha()
+drone_rect = drone.get_rect(center = (1300, 320))
 # 545
 # black hole
 black_hole = pygame.image.load('black-hole.png').convert_alpha()
@@ -89,6 +96,8 @@ cloud_x = 1100
 airplane_x = 0
 # gravity
 flat_surface = 0
+# new speed
+new_speed = 0
 Tick = pygame.time.Clock()
 
 # trying out co-ordinates to learn more about them 
@@ -115,6 +124,7 @@ while True:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and player_rect.bottom >= 502:
+                    ninja_jump.play()
                     flat_surface = -20
 
             if event.type == pygame.KEYDOWN:
@@ -125,6 +135,9 @@ while True:
                 if event.key == pygame.K_RIGHT:
                     player_rect.x += 30
             
+            if score.clicks > 30:
+                new_speed -= 20
+
             if exit_button_rect.collidepoint(MousePosition):
                 if pygame.mouse.get_pressed()[0]:
                     pygame.quit()
@@ -190,6 +203,8 @@ while True:
         screen.blit(family_of_that_house, (family_of_that_house_x, 471))
         # car object
         screen.blit(car, car_rect)
+        # drone
+        screen.blit(drone, drone_rect)
         # player 
         flat_surface += 1
         player_rect.y += flat_surface
@@ -221,9 +236,15 @@ while True:
                 player_rect.left = 35
 
         # car mechanism
-        car_rect.x -= 10
+        car_rect.x -= 9
+        new_speed = car_rect.x
         if car_rect.right < -200:
             car_rect.left = 1300
+        
+        # drone mechanism
+        drone_rect.x += 6
+        if drone_rect.right > 1250:
+            drone_rect.left = -50
 
         # cloud movement
         extra_clouds_x -= 0.1
@@ -232,14 +253,30 @@ while True:
 
         if player_rect.colliderect(car_rect):
             game_loop = False
+            drone_rect.left = -150
             screen.fill('#000033')
             screen.blit(game_over, game_over_rect)
             screen.blit(retry, retry_rect)
             screen.blit(high_score, high_score_rect)
             screen.blit(store_high_score, store_high_score_rect)
 
+        else:
+            if player_rect.colliderect(drone_rect):
+                game_loop = False
+                drone_rect.left = -100
+                screen.fill('#000033')
+                screen.blit(game_over, game_over_rect)
+                screen.blit(retry, retry_rect)
+                screen.blit(high_score, high_score_rect)
+                screen.blit(store_high_score, store_high_score_rect)
+        
+
         if player_rect.colliderect(finish_line_rect):
-            screen.fill('black')
+            screen.fill('#000033')
+            cong = font.render('YOU WON!', False, 'blue')
+            cong_rect = cong.get_rect(center = (600, 200))
+            screen.blit(cong, cong_rect)
+            screen.blit(retry, retry_rect)
             # screen.blit(win, win_rect)
 
     # screen.blit(game_over, game_over_rect)
