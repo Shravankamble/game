@@ -7,6 +7,9 @@ pygame.init()
 # size of the window or display
 # sound effect
 ninja_jump = pygame.mixer.Sound('ninja-jump.mp3')
+ninja_hurt = pygame.mixer.Sound('hurt.mp3')
+music = pygame.mixer.music.load('bgMusic.mp3')
+pygame.mixer.music.play(-1)
 # screen width and height
 width = 1200
 height = 600
@@ -129,11 +132,11 @@ while True:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    player_rect.left -= 30
+                    player_rect.left -= 25
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    player_rect.x += 30
+                    player_rect.x += 25
             
             if score.clicks > 30:
                 new_speed -= 20
@@ -152,7 +155,8 @@ while True:
                 # [2] -> button on the right hand side of the mouse
                 # pygame.mouse.get_pressed()[1] or pygame.mouse.get_pressed()[2] you can use whichever button you like the most on the mouse
                 #                             ↓                       
-                if pygame.mouse.get_pressed()[0]:    
+                if pygame.mouse.get_pressed()[0]:
+                    pygame.mixer.music.play(-1)    
                     game_loop = True
                     car_rect.right = 1300
                     player_rect.left = 35
@@ -236,22 +240,27 @@ while True:
                 player_rect.left = 35
 
         # car mechanism
-        car_rect.x -= 9
+        car_rect.x -= 12
         new_speed = car_rect.x
         if car_rect.right < -200:
             car_rect.left = 1300
         
+        
         # drone mechanism
-        drone_rect.x += 6
+        drone_rect.x += 8
         if drone_rect.right > 1250:
             drone_rect.left = -50
-
+        # if drone_rect.x >= 0 and drone_rect.x <= 1200:
+        #     print("start and end")
+             
         # cloud movement
         extra_clouds_x -= 0.1
         if extra_clouds_x < -200:
             extra_clouds_x = values.extra_cloud_respawn_pos
 
         if player_rect.colliderect(car_rect):
+            pygame.mixer.music.stop()
+            ninja_hurt.play()
             game_loop = False
             drone_rect.left = -150
             screen.fill('#000033')
@@ -262,6 +271,8 @@ while True:
 
         else:
             if player_rect.colliderect(drone_rect):
+                pygame.mixer.music.stop()
+                ninja_hurt.play()
                 game_loop = False
                 drone_rect.left = -100
                 screen.fill('#000033')
