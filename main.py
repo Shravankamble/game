@@ -8,6 +8,8 @@ pygame.init()
 # sound effect
 ninja_jump = pygame.mixer.Sound('ninja-jump.mp3')
 ninja_hurt = pygame.mixer.Sound('hurt.mp3')
+stab = pygame.mixer.Sound('stab.mp3')
+blast = pygame.mixer.Sound('blast.wav')
 music = pygame.mixer.music.load('bgMusic.mp3')
 pygame.mixer.music.play(-1)
 # screen width and height
@@ -259,10 +261,10 @@ while True:
             extra_clouds_x = values.extra_cloud_respawn_pos
 
         if player_rect.colliderect(car_rect):
-            pygame.mixer.music.stop()
-            ninja_hurt.play()
             game_loop = False
-            drone_rect.left = -150
+            ninja_hurt.play() and stab.play()
+            pygame.mixer.music.stop()
+            car_rect.right = 1300
             screen.fill('#000033')
             screen.blit(game_over, game_over_rect)
             screen.blit(retry, retry_rect)
@@ -271,10 +273,10 @@ while True:
 
         else:
             if player_rect.colliderect(drone_rect):
-                pygame.mixer.music.stop()
-                ninja_hurt.play()
                 game_loop = False
-                drone_rect.left = -100
+                ninja_hurt.play() and blast.play()
+                pygame.mixer.music.stop()
+                drone_rect.left = -500
                 screen.fill('#000033')
                 screen.blit(game_over, game_over_rect)
                 screen.blit(retry, retry_rect)
