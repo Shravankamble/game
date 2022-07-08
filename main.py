@@ -109,12 +109,13 @@ Tick = pygame.time.Clock()
 # testing.fill('white')
 
 # this is the while loop to run display until the user quits means exiting the game.
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-            
+
         MousePosition = pygame.mouse.get_pos()
 
         if game_loop:
@@ -142,7 +143,7 @@ while True:
                 if pygame.mouse.get_pressed()[0]:
                     pygame.quit()
                     exit()
-            
+
         else:
             if retry_rect.collidepoint(MousePosition):
             # pygame.mouse.get_pos() method is used to get the position of the mouse
@@ -158,6 +159,7 @@ while True:
                     car_rect.right = 1300
                     player_rect.left = 35
                     score.reset = (int)(pygame.time.get_ticks() / 150)
+
 
     # .blit() basically means adding additional surface/image on each other.
     # screen.blit(testing, (10, 500))
@@ -215,17 +217,17 @@ while True:
         # 67
         # print(player_rect.right)
         # house movement
-        house_x += 4
+        house_x += 8
         if house_x > 1300:
             house_x = values.house_x_respawn_pos
 
         # family_of_that_house movement
-        family_of_that_house_x += 4
+        family_of_that_house_x += 8
         if family_of_that_house_x > 1300:
             family_of_that_house_x = values.family_of_that_house_x_respawn_pos
 
         # tree movement
-        tree_x += 4
+        tree_x += 8
         if tree_x > 1300:
             tree_x = values.tree_x_respawn_pos
 
@@ -280,6 +282,7 @@ while True:
         
 
         if player_rect.colliderect(finish_line_rect):
+            game_loop = False
             sd.stop()
             screen.fill('#000033')
             cong = font.render('YOU WON!', False, 'blue')
