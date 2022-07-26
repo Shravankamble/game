@@ -284,6 +284,7 @@ while True:
         if player_rect.colliderect(finish_line_rect):
             game_loop = False
             sd.stop()
+            sd.win.play()
             screen.fill('#000033')
             cong = font.render('YOU WON!', False, 'blue')
             cong_rect = cong.get_rect(center = (600, 200))
