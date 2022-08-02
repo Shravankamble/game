@@ -1,12 +1,12 @@
 import pygame
 import values
-import sound as sd
+# import sound as sd
 import score
 from sys import exit
 
 pygame.init()
 # sound effect
-sd.bg_music()
+# sd.bg_music()
 # screen width and height
 width = 1200
 height = 600
@@ -125,7 +125,7 @@ while True:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and player_rect.bottom >= 502:
-                    sd.ninja_jump.play()
+                    # sd.ninja_jump.play()
                     flat_surface = -20
 
             if event.type == pygame.KEYDOWN:
@@ -154,7 +154,7 @@ while True:
                 # pygame.mouse.get_pressed()[1] or pygame.mouse.get_pressed()[2] you can use whichever button you like the most on the mouse
                 #                             ↓                       
                 if pygame.mouse.get_pressed()[0]:
-                    sd.bg_music()    
+                    # sd.bg_music()    
                     game_loop = True
                     car_rect.right = 1300
                     player_rect.left = 35
@@ -259,8 +259,8 @@ while True:
 
         if player_rect.colliderect(car_rect):
             game_loop = False
-            sd.ninja_hurt.play() and sd.stab.play()
-            sd.stop()
+            # sd.ninja_hurt.play() and sd.stab.play()
+            # sd.stop()
             car_rect.right = 1300
             screen.fill('#000033')
             screen.blit(game_over, game_over_rect)
@@ -271,8 +271,8 @@ while True:
         else:
             if player_rect.colliderect(drone_rect):
                 game_loop = False
-                sd.ninja_hurt.play() and sd.blast.play()
-                sd.stop()
+                # sd.ninja_hurt.play() and sd.blast.play()
+                # sd.stop()
                 drone_rect.left = -500
                 screen.fill('#000033')
                 screen.blit(game_over, game_over_rect)
@@ -283,8 +283,8 @@ while True:
 
         if player_rect.colliderect(finish_line_rect):
             game_loop = False
-            sd.stop()
-            sd.win.play()
+            # sd.stop()
+            # sd.win.play()
             screen.fill('#000033')
             cong = font.render('YOU WON!', False, 'blue')
             cong_rect = cong.get_rect(center = (600, 200))
@@ -296,4 +296,4 @@ while True:
     # pygame.display.update() is used to keep updating the screen or display
     pygame.display.update()
     # ths .tick() function is used for the games fps(frames per second)
-    Tick.tick(80)
+    Tick.tick(88)
