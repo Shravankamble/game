@@ -1,15 +1,13 @@
 import pygame
 import values
+import sound
 import score
 from sys import exit
 
 pygame.init()
 # sound effect
-def bgm():
-    music = pygame.mixer.music.load('bgm.mp3')
-    pygame.mixer.music.play(-1)
-
-bgm()
+sound.bgm()
+# sd.bgm()
 # screen width and height
 width = 1200
 height = 600

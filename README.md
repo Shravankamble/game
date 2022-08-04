@@ -1,21 +1,12 @@
 # this project(game) is created in python using pygame module
 
-# DAY 1
-- [x] ***added almost all the images that needs to be in the game***
-- [x] ***each image has its own movement, added the movement needed to that particular object/image***
-- [x] ***DAY 1 completed***
-
-# DAY 2
-- [x] to be continued
-# DAY 3
-- [x] to be continued
-# DAY 4
-- [x] to be continued
-# DAY 4
-- [x] to be continued
-# DAY 5
-- [x] to be continued
-# DAY 6
-- [x] to be continued
-# DAY 7
-- [x] to be continued
+- ***i created a simple game in python using pygame module,
+in this game you have to be careful with the cactus and drone make sure you dont collide with those objects,
+and you can move your character/player using RIGHT and LEFT key and you can use the UP key to jump and avoid collisoion with the cactus***
+-  if you want to play this game clone this repository and play the game 
+# requiremets 
+- pygame module
+- python installed, if you have already thats great!
+- use `pip install pygame` to install pygame module
+- and you are ready to play the game
+**I hope you enjoy playing the game**
