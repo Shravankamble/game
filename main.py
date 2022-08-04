@@ -1,12 +1,11 @@
 import pygame
 import values
-# import sound as sd
+import sound as sd
 import score
 from sys import exit
 
 pygame.init()
 # sound effect
-# sd.bg_music()
 # screen width and height
 width = 1200
 height = 600
@@ -153,8 +152,7 @@ while True:
                 # [2] -> button on the right hand side of the mouse
                 # pygame.mouse.get_pressed()[1] or pygame.mouse.get_pressed()[2] you can use whichever button you like the most on the mouse
                 #                             ↓                       
-                if pygame.mouse.get_pressed()[0]:
-                    # sd.bg_music()    
+                if pygame.mouse.get_pressed()[0]: 
                     game_loop = True
                     car_rect.right = 1300
                     player_rect.left = 35
@@ -260,7 +258,6 @@ while True:
         if player_rect.colliderect(car_rect):
             game_loop = False
             # sd.ninja_hurt.play() and sd.stab.play()
-            # sd.stop()
             car_rect.right = 1300
             screen.fill('#000033')
             screen.blit(game_over, game_over_rect)
@@ -272,7 +269,6 @@ while True:
             if player_rect.colliderect(drone_rect):
                 game_loop = False
                 # sd.ninja_hurt.play() and sd.blast.play()
-                # sd.stop()
                 drone_rect.left = -500
                 screen.fill('#000033')
                 screen.blit(game_over, game_over_rect)
@@ -283,7 +279,6 @@ while True:
 
         if player_rect.colliderect(finish_line_rect):
             game_loop = False
-            # sd.stop()
             # sd.win.play()
             screen.fill('#000033')
             cong = font.render('YOU WON!', False, 'blue')

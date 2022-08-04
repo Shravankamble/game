@@ -12,8 +12,8 @@ pygame.init()
 
 # win = pygame.mixer.Sound('winning.wav')
 
-def bg_music():
-    music = pygame.mixer.music.load('bgMusic.mp3')
+def bgmusic():
+    music = pygame.mixer.music.load('bgmusic.mp3')
     pygame.mixer.music.play(-1)
 
 def stop():
