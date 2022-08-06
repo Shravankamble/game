@@ -1,12 +1,12 @@
 import pygame
 import values
-import sound
+import pfg
+# import sound as sd
 import score
 from sys import exit
 
 pygame.init()
-# sound effect
-sound.bgm()
+# sound.bgm()
 # sd.bgm()
 # screen width and height
 width = 1200
@@ -109,8 +109,10 @@ Tick = pygame.time.Clock()
 # the fill is just means adding color to it
 # testing.fill('white')
 
-# this is the while loop to run display until the user quits means exiting the game.
+# intro
+pfg.intro()
 
+# this is the while loop to run display until the user quits means exiting the game.
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -136,9 +138,6 @@ while True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     player_rect.x += 25
-            
-            if score.clicks > 30:
-                new_speed -= 20
 
             if exit_button_rect.collidepoint(MousePosition):
                 if pygame.mouse.get_pressed()[0]:
@@ -154,7 +153,7 @@ while True:
                 # [2] -> button on the right hand side of the mouse
                 # pygame.mouse.get_pressed()[1] or pygame.mouse.get_pressed()[2] you can use whichever button you like the most on the mouse
                 #                             ↓                       
-                if pygame.mouse.get_pressed()[0]: 
+                if (pygame.mouse.get_pressed()[0]): 
                     game_loop = True
                     car_rect.right = 1300
                     player_rect.left = 35
@@ -247,7 +246,7 @@ while True:
         
         # drone mechanism
         drone_rect.x += 8
-        if drone_rect.right > 1250:
+        if drone_rect.right > 1350:
             drone_rect.left = -50
         # if drone_rect.x >= 0 and drone_rect.x <= 1200:
         #     print("start and end")
