@@ -4,7 +4,7 @@
 in this game you have to be careful with the cactus and drone make sure you dont collide with those objects,
 and you can move your character/player using RIGHT and LEFT key and you can use the UP key to jump and avoid collisoion with the cactus***
 -  if you want to play this game clone this repository and play the game 
-# requiremets 
+# Installation 
 - pygame module
 - python installed, if you have already thats great!
 - use `pip install pygame` to install pygame module
