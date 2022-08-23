@@ -10,7 +10,9 @@ and you can move your character/player using RIGHT and LEFT key and you can use 
 - use `pip install pygame` to install pygame module
 - and you are ready to play the game
 <hr>
+
 - here is the game in action
-<img src="Screenshot (6).png">\
+
+<img src="Screenshot (6).png">
 
 **I hope you enjoy playing the game**
