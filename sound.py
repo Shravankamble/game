@@ -18,10 +18,10 @@
 
 # def stop():
 #     pygame.mixer.music.stop()
-import pygame
 
-pygame.init()
 
-def bgm():
-    music = pygame.mixer.music.load('bgm.mp3')
-    pygame.mixer.music.play(-1)
+def hello():
+    return "hello world!"
+
+def nothing():
+    return "nothing"
