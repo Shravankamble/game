@@ -28,52 +28,52 @@ high_score_rect = high_score.get_rect(center = (600, 470))
 # the title of the game
 pygame.display.set_caption('SpeedRunner')
 # we are never gonna move the main image it gonna be where it was from the starting
-pygame_logo = pygame.image.load('run.png')
+pygame_logo = pygame.image.load('./img/run.png')
 pygame.display.set_icon(pygame_logo)
 # background/sky
-sky_image = pygame.image.load('sky_image.png')
+sky_image = pygame.image.load('./img/sky_image.png')
 # finish line
-finish_line = pygame.image.load('panel.png')
+finish_line = pygame.image.load('./img/panel.png')
 finish_line_rect = finish_line.get_rect(center = (1150, 480))
 # exit button
-exit_button = pygame.image.load('exit-button.png')
+exit_button = pygame.image.load('./img/exit-button.png')
 exit_button_rect = exit_button.get_rect(center = (1190, 10))
 # airplane
-airplane = pygame.image.load('airplane.png').convert_alpha()
+airplane = pygame.image.load('./img/airplane.png').convert_alpha()
 # cloud
-cloud = pygame.image.load('cloudy.png').convert_alpha()
+cloud = pygame.image.load('./img/cloudy.png').convert_alpha()
 # extra cloud
-extra_clouds = pygame.image.load('clouds.png').convert_alpha()
+extra_clouds = pygame.image.load('./img/clouds.png').convert_alpha()
 # sun
-sun = pygame.image.load('contrast.png').convert_alpha()
+sun = pygame.image.load('./img/contrast.png').convert_alpha()
 # ground
-ground = pygame.image.load('ground.png')
+ground = pygame.image.load('./img/ground.png')
 # extra ground
-extra_ground = pygame.image.load('extra_ground.png')
+extra_ground = pygame.image.load('./img/extra_ground.png')
 # tree
-tree = pygame.image.load('tree.png').convert_alpha()
+tree = pygame.image.load('./img/tree.png').convert_alpha()
 #house
-house = pygame.image.load('house.png').convert_alpha()
+house = pygame.image.load('./img/house.png').convert_alpha()
 #family of that house
-family_of_that_house = pygame.image.load('garden.png').convert_alpha()
+family_of_that_house = pygame.image.load('./img/garden.png').convert_alpha()
 # restart button
-retry = pygame.image.load('restart.png').convert_alpha()
+retry = pygame.image.load('./img/restart.png').convert_alpha()
 retry_rect = retry.get_rect(center = (600, 400))
 # game over
-game_over = pygame.image.load('game-over.png').convert_alpha()
+game_over = pygame.image.load('./img/game-over.png').convert_alpha()
 game_over_rect = game_over.get_rect(center = (600, 200))
 # player
-player = pygame.image.load('ninja.png').convert_alpha()
+player = pygame.image.load('./img/ninja.png').convert_alpha()
 player_rect = player.get_rect(midbottom = (35, 502))
 # car
-car = pygame.image.load('cactus.png').convert_alpha()
+car = pygame.image.load('./img/cactus.png').convert_alpha()
 car_rect = car.get_rect(bottomright = (1000, 502))
 # drone
-drone = pygame.image.load('drone.png').convert_alpha()
+drone = pygame.image.load('./img/drone.png').convert_alpha()
 drone_rect = drone.get_rect(center = (1300, 320))
 # 545
 # black hole
-black_hole = pygame.image.load('black-hole.png').convert_alpha()
+black_hole = pygame.image.load('./img/black-hole.png').convert_alpha()
 black_hole_rect = black_hole.get_rect(midbottom = (700, 460))
 # player_x and player_y
 player_x = 35

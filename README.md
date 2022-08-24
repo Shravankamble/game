@@ -14,6 +14,6 @@ and you can move your character/player using `RIGHT and LEFT key` and you can us
 
 - here is the game in action
 
-<img src="Screenshot (6).png">
+<!-- <img src="Screenshot (6).png"> -->
 
 **I hope you enjoy playing the game**
