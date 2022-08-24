@@ -13,15 +13,10 @@
 # # win = pygame.mixer.Sound('winning.wav')
 
 # def bgmusic():
-#     music = pygame.mixer.music.load('bgmusic.mp3')
+#     music = pygame.mixer.music.load('bgm.mp3')
 #     pygame.mixer.music.play(-1)
 
 # def stop():
 #     pygame.mixer.music.stop()
 
 
-def hello():
-    return "hello world!"
-
-def nothing():
-    return "nothing"
