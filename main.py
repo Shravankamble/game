@@ -1,7 +1,6 @@
 import pygame
 import values
 import pfg
-# import sound as sd
 import score
 from sys import exit
 
