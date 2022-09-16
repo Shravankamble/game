@@ -17,4 +17,4 @@ and you can move your character/player using `RIGHT and LEFT key` and you can us
 ![video](https://user-images.githubusercontent.com/87265691/186472619-f0012433-5672-4d14-8424-8e8f6b64f89b.gif)
 
 
-**I hope you enjoy playing the game**
+**I hope you enjoy playing the game!**
