@@ -1,6 +1,6 @@
 # this project(game) is created in python using pygame module
 
-- ***i created a simple game in python using pygame module,
+- ***I created a simple game in python using pygame module,
 in this game you have to be careful with the cactus and drone make sure you dont collide with those objects,
 and you can move your character/player using `RIGHT and LEFT key` and you can use the `SPACE key` to jump and avoid collisoion with the cactus***
 - if you want to play this game clone or fork this repository and play the game 
