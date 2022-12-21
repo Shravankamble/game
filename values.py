@@ -7,8 +7,8 @@ house_x_respawn_pos = -100
 family_of_that_house_x_respawn_pos = -100
 player_rect_left_respawn_pos = -100
 
-def hello()
-  return "hello world"
+def hello(name) -> str
+  return f"hello {name}"
 
 # airplane_respawn_pos = -100
 # cloud_x_respawn_pos = 1400
