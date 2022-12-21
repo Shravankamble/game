@@ -14,3 +14,6 @@ def score(screen):
     score_rect = score_grd.get_rect(center = (615, 20))
     screen.blit(score_grd, score_rect)
     high_score = clicks
+    
+def hello(name) -> str
+    return f"hello {name}
