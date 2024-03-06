@@ -17,7 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: check env secrets 
+    - name: making scripts executable
+      run: chmod +x check_envs
+    - name: check env secrets and variables
       run: |
-        echo "$KUBE_CONF"
-        echo "${{ env.KUBE_CONF }}"
+        ./check_envs
+        
