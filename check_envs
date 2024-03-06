@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ "$USER_NAME" == "shravan" ]; then 
+if [ "$USER_NAME" == "just_checks" ]; then 
     echo "valid SECRET"
 else
     echo "invalid SECRET"
 fi
 
-if [ "$USER_ADMIN" == "shravank" ]; then 
+if [ "$USER_ADMIN" == "just_checks" ]; then 
     echo "valid VARIABLE"
 else
     echo "invalid VARIABLE"
