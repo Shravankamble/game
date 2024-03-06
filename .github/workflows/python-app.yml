@@ -9,7 +9,7 @@ on:
     branches: [ "master" ]
 env: 
   USER_NAME: ${{ secrets.USER_NAME }}
-  USER_ADMIN: ${{ env.USER_ADMIN }}
+  USER_ADMIN: $USER_ADMIN
 # permissions:
   # contents: read
 jobs:
