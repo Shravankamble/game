@@ -19,3 +19,4 @@ jobs:
     - name: check env secrets 
       run: |
         echo "$KUBE_CONF"
+        echo "${{ env.KUBE_CONF }}"
